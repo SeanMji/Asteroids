@@ -380,7 +380,7 @@ void UpdateGame()
         }
 
         //if the asteroids are destroyed 
-        if (AsteroidsDestrtoyed == AsteroidsMax + AsteroidsMaxMed + AsteroidsMaxSmall)
+        if (AsteroidsDestrtoyed == AsteroidsMax + AsteroidsMaxMed + AsteroidsMaxSmall && spaceship.alive)
         {
             winner = true;
             retry = true;
@@ -417,7 +417,15 @@ void UpdateGame()
         }
         
     }
-    
+    bool LeaveGame = false;
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        LeaveGame = true;
+    }
+    if (LeaveGame)
+    {
+        CloseWindow();
+    }
 
 }
 
@@ -510,8 +518,8 @@ void Draw()
             { spaceship.posx + 25 * sinAngle, spaceship.posy - 25 * cosAngle }
             , { spaceship.posx - 10 * cosAngle,spaceship.posy - 10 * sinAngle }
         , { spaceship.posx + 10 * cosAngle, spaceship.posy + 10 * sinAngle }, BLANK);
-        DrawText("YOU LOSE", 100, 100, 100, RED);
-        DrawText("if you run out of lives the game will reset", 50, 200, 50, RED);
+        DrawText("YOU LOSE", 100, 150, 100, RED);
+        DrawText("if you run out of lives the game will reset to round one", 50, 250, 25, RED);
     }
 
     //winner draw
@@ -519,7 +527,8 @@ void Draw()
     {
         if (spaceship.alive)
         {
-            DrawText("YOU WIN", 100, 100, 100, RED);
+            DrawText("YOU WIN", 100, 150, 100, RED);
+            DrawText("Click R for next round", 50, 250, 25, RED);
         }
     }
 
@@ -532,6 +541,8 @@ void Draw()
     
     DrawText(std::to_string(Round).c_str(), screenWidth / 13, screenHeight / 7, 25, RED);
     DrawText("Round: ", screenWidth / 120, screenHeight / 7, 25, RED);
+
+    DrawText("Close game: Esc", screenWidth / 120, screenHeight / 18, 25, RED);
 
 }
 
