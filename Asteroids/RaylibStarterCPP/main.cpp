@@ -56,14 +56,14 @@ bool winner = false;
 bool retry = false;
 int lives = 3;
 int Round = 1;
+float sinAngle;
+float cosAngle;
 
 //initializes the game
 void GameInitialize()
 {
 
-    
-
-    
+   
     //initializes the player
     spaceship.posx = screenWidth / 2;
     spaceship.posy = screenHeight / 2;
@@ -168,8 +168,8 @@ void UpdateGame()
     if (!retry)
     {
         //sin and cos angle based on the spaceships rotation
-        float sinAngle = sin(spaceship.rotation * DEG2RAD);
-        float cosAngle = cos(spaceship.rotation * DEG2RAD);
+        sinAngle = sin(spaceship.rotation * DEG2RAD);
+        cosAngle = cos(spaceship.rotation * DEG2RAD);
 
 
         WrapAroundScreen(spaceship.posx, spaceship.posy, spaceship.ShipHitbox);
@@ -431,10 +431,7 @@ void UpdateGame()
 
 void Draw()
 {
-    //same sin angle and cos angle but used for draw
-    float sinAngle = sin(spaceship.rotation * DEG2RAD);
-    float cosAngle = cos(spaceship.rotation * DEG2RAD);
-
+    
     
     
     //draw bullets
