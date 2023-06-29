@@ -167,6 +167,7 @@ void UpdateGame()
 
     if (!retry)
     {
+
         //sin and cos angle based on the spaceships rotation
         sinAngle = sin(spaceship.rotation * DEG2RAD);
         cosAngle = cos(spaceship.rotation * DEG2RAD);
